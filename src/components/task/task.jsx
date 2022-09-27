@@ -1,4 +1,11 @@
 import React, { useState, useMemo } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faSquarePlus,
+	faPlus,
+	faTrashCan,
+	faMinus,
+} from "@fortawesome/free-solid-svg-icons";
 import SubTask from "./subTask";
 import { add, remove, update } from "./utils";
 import "./task.scss";
@@ -25,28 +32,29 @@ const renderInitialSubTask = () => {
 };
 
 const ToDoList = () => {
-	const [tasks, setTask] = useState(renderInitialSubTask());
+	const [tasks, setTasks] = useState(renderInitialSubTask());
 	function addSubTask(parentId, type) {
 		const newChild =
 			type === "group" ? renderInitialTask() : renderInitialSubTask();
 		if (parentId) {
 			const newSubTask = add(parentId, tasks?.subTask, newChild);
-			setTask({ ...tasks, subTask: [...newSubTask] });
+			setTasks({ ...tasks, subTask: [...newSubTask] });
 		} else {
 			const newSubTask = tasks?.subTask
 				? [...tasks?.subTask, newChild]
 				: [{ ...newChild }];
-			setTask({ ...tasks, subTask: [...newSubTask] });
+			setTasks({ ...tasks, subTask: [...newSubTask] });
 		}
 	}
 
 	function removeSubTask(id) {
 		if (id) {
-			const subConditions = remove(tasks?.subTask, id);
-			console.log({ ...tasks, subConditions });
+			const subTask = remove(tasks?.subTask, id);
+			console.log(subTask);
+			setTasks({ ...tasks, subTask });
 		} else {
-			const subConditions = [renderInitialSubTask()];
-			console.log({ ...tasks, subConditions });
+			const subTask = [renderInitialSubTask()];
+			setTasks({ ...tasks, subTask });
 		}
 	}
 
@@ -55,24 +63,20 @@ const ToDoList = () => {
 			...tasks,
 			subTask: update(id, tasks.subTask, null, subTask),
 		};
-		setTask({ ...newTask });
+		setTasks({ ...newTask });
 	}
 
 	const renderConditionActions = (id) => (
 		<div className="actionWrapper">
 			{/*TODO add styles*/}
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "group")}>
-				<span className="icon-outlineGroupIcon" />
-				addTask
+				<FontAwesomeIcon icon={faSquarePlus} className="fa-regular" />
 			</button>
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "sub")}>
-				<span className="icon-outlinePlusIcon" />
-				addSubTask
+				<FontAwesomeIcon icon={faPlus} />
 			</button>
 			<button className="actionBtnRed" onClick={() => removeSubTask(id)}>
-				<span className="icon-outlineMinusIcon" />
-				remove
-				{/*TODO add font-awesome icon*/}
+				<FontAwesomeIcon icon={faTrashCan} />
 			</button>
 		</div>
 	);
@@ -86,7 +90,7 @@ const ToDoList = () => {
 				/>
 				<div className="removeBtnContainer">
 					<button className="removeBtn" onClick={() => removeSubTask(item.id)}>
-						<span className="icon-outlineMinusIcon" />
+						<FontAwesomeIcon icon={faMinus} />
 					</button>
 				</div>
 			</div>
