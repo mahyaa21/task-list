@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faSquarePlus,
@@ -31,8 +31,13 @@ const renderInitialSubTask = () => {
 	};
 };
 
-const ToDoList = () => {
-	const [tasks, setTasks] = useState(renderInitialSubTask());
+const ToDoList = ({ getList, TaskList }) => {
+	const [tasks, setTasks] = useState(TaskList);
+	
+	useEffect(()=> {
+		getList(tasks);
+	},[tasks]);
+	
 	function addSubTask(parentId, type) {
 		const newChild =
 			type === "group" ? renderInitialTask() : renderInitialSubTask();
@@ -66,7 +71,7 @@ const ToDoList = () => {
 		setTasks({ ...newTask });
 	}
 
-	const renderConditionActions = (id) => (
+	const renderTaskActions = (id) => (
 		<div className="actionWrapper">
 			{/*TODO add styles*/}
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "group")}>
@@ -83,7 +88,7 @@ const ToDoList = () => {
 
 	const Sub = (item, index) => (
 		<li>
-			<div className="subConditionContainer">
+			<div className="subTaskContainer">
 				<SubTask
 					subTask={item}
 					onChange={(updatedTask) => editSubTask(item.id, updatedTask)}
@@ -99,8 +104,8 @@ const ToDoList = () => {
 
 	const Group = (item) => (
 		<li className="groupContainer">
-			<div className="groupBtnContainer">{renderConditionActions(item.id)}</div>
-			<ul className="mainLevelCondition">
+			<div className="groupBtnContainer">{renderTaskActions(item.id)}</div>
+			<ul className="mainLevelTask">
 				{item?.subTask?.map((tsk, index) => {
 					return tsk?.subTask?.length ? Group(tsk) : Sub(tsk, index);
 				})}
@@ -110,8 +115,8 @@ const ToDoList = () => {
 	const renderTask = useMemo(
 		() => (
 			<>
-				<div className="groupBtnContainer">{renderConditionActions(null)}</div>
-				<ul className="mainLevelCondition">
+				<div className="groupBtnContainer">{renderTaskActions(null)}</div>
+				<ul className="mainLevelTask">
 					{tasks?.subTask?.map((tsk, index) =>
 						tsk?.subTask?.length ? Group(tsk) : Sub(tsk, index)
 					)}

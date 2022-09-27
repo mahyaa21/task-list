@@ -13,12 +13,10 @@ const SubTask = ({ subTask, onChange }) => {
 	},[subTaskTitle, subTask.title])
 
 	return (
-		<div className="subTaskContainer">
 			<input
 				value={subTaskTitle}
 				onChange={(e) => setSubTaskTitle(e.target.value)}
 			/>
-		</div>
 	);
 };
 
