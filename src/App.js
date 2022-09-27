@@ -6,13 +6,14 @@ import ToDoList from "./components/task/task";
 
 // TODO - feel free to modify "App" content and develope the solution
 const App = observer(() => {
-  const { TasksStore } = useStores();
-  return (
-    <div className="App">
-      {TasksStore.label}
-      <ToDoList />
-    </div>
-  );
+	const { TasksStore } = useStores();
+	console.log(TasksStore);
+	return (
+		<div className="App">
+			{TasksStore.label}
+			<ToDoList TaskList={TasksStore.TaskList} getList={(list) => {TasksStore.updateTasks(list)}} />
+		</div>
+	);
 });
 
 export default App;
