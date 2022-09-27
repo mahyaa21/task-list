@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 class TasksStore {
-  label = "دیجی اکسپرس‌";
+  label = "TO DO LIST";
+  description= "Do more what makes you happy!";
   taskList = {
 		id: Date.now().toString(),
 		title: null,
@@ -11,11 +12,11 @@ class TasksStore {
     makeObservable(this, {
       label: observable,
       taskList: observable,
+      description: observable,
       updateTasks: action
     });
   }
 
-  // TODO - add needed methods to manipulate 'tasks'
   updateTasks(list) {
     this.taskList = { ...list }
   }
