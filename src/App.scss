@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: #f0f5ff;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f5ff !important;
+  }
+}
+
+input {
+  border: none;
+  width: 87%;
+  margin-left: 4px;
+  margin-top: 10px;
+  outline: none;
+  height: 24px;
+  border-radius: 4px;
+  padding-left: 8px;
+}
+
+.todolistContainer {
+  width: 100%;
+  max-width: 400px;
+  min-height: 35px;
+  background-color: #c0d6ff;
+  border: 1px solid #5894ff;
+  border-radius: 10px;
+}

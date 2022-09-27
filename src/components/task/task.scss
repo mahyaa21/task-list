@@ -1,0 +1,219 @@
+.fieldWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 255px;
+
+  span {
+    font-size: 12px;
+    color: var(--text-field-label);
+  }
+}
+
+.constraint {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  span {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--primary);
+  }
+}
+
+.field {
+  width: 60%;
+  margin-left: 8px;
+}
+
+.operator {
+  width: 30%;
+  margin-left: 8px;
+}
+
+.value {
+  margin-left: 53px;
+  margin-top: 6px;
+  height: 43px;
+  width: 30% !important;
+
+}
+
+///////new task
+.container {
+  overflow-y: scroll;
+  max-height: 622px;
+  min-height: 160px;
+}
+
+.removeBtn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px;
+  height: 20px;
+
+  span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 17px !important;
+    height: 17px !important;
+  }
+}
+
+.addButton {
+  border: dashed 1px #5894ff !important;
+  width: 59px !important;
+  height: 24px !important;
+  margin-top: 10px;
+  margin-left: 8px;
+  padding: 0 4px !important;
+
+  span {
+    font-size: 12px;
+    color: #5894ff;
+    width: 59px !important;
+    height: 24px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    svg {
+      width: 12px;
+      height: 12px;
+      margin-left: 2px;
+
+      path {
+        fill: #5894ff;
+      }
+    }
+  }
+}
+
+.mainLevelTask {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+
+  li {
+    list-style-type: none;
+    margin-right: 1em;
+    position: relative;
+  }
+}
+
+.groupContainer {
+  border: 1px solid #5894ff;
+  margin: 4px;
+  border-radius: 8px;
+}
+
+.groupBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 4px;
+  padding-top: 8px;
+  @extend.mainLevelTask;
+}
+
+.subTaskContainer {
+  width: calc(100% - 24px);
+  position: relative;
+  padding: 0 16px 8px 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: baseline;
+  border: 1px solid #5894ff;
+  margin: 7px;
+  border-radius: 8px;
+}
+
+.primaryBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #0a84ff !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+
+  span {
+    font-size: 12px;
+    font-weight: normal;
+    color: #fefefe;
+  }
+}
+
+.subtleBtn {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 2px 0 0 !important;
+  border-radius: 0 !important;
+
+  span {
+    font-size: 12px;
+    font-weight: normal;
+    color: #0a84ff;
+  }
+}
+
+.logicalOperatorBtnWrapper {
+  border: 1px solid #0a84ff !important;
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.actionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+}
+
+.logicalOperator {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionBtn {
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 4px;
+
+  span {
+    font-size: 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+.actionBtnBlue {
+  span {
+    color: #5894ff !important;
+  }
+
+  @extend.actionBtn;
+}
+
+.actionBtnRed {
+  span {
+    color: #ff5252 !important;
+  }
+
+  @extend.actionBtn;
+}
