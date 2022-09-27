@@ -55,7 +55,6 @@ const ToDoList = ({ getList, TaskList }) => {
 	function removeSubTask(id) {
 		if (id) {
 			const subTask = remove(tasks?.subTask, id);
-			console.log(subTask);
 			setTasks({ ...tasks, subTask });
 		} else {
 			const subTask = [renderInitialSubTask()];
