@@ -4,19 +4,21 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "mobx-react";
-import TasksStore from "./store/tasks";
+import TasksStore from "./store/task";
 
 const stores = {
-  TasksStore,
+	TasksStore,
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+
+const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <React.StrictMode>
-    <Provider {...stores}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider {...stores}>
+			<App />
+		</Provider>
+	</React.StrictMode>
 );
 
 reportWebVitals();

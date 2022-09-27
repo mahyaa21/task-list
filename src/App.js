@@ -1,28 +1,17 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import { observer } from "mobx-react";
 import useStores from "./useStores";
+import ToDoList from "./components/task/task";
 
 // TODO - feel free to modify "App" content and develope the solution
 const App = observer(() => {
   const { TasksStore } = useStores();
-
+console.log(TasksStore);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://www.digiexpress.ir/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {TasksStore.label}
-        </a>
-      </header>
+      {TasksStore.label}
+      <ToDoList/>
     </div>
   );
 });
