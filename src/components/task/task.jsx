@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
-import { add, remove } from "./utils";
+import SubTask from "./subTask";
+import { add, remove, update } from "./utils";
 import "./task.scss";
 
 const renderInitialTask = () => {
@@ -24,16 +25,18 @@ const renderInitialSubTask = () => {
 };
 
 const ToDoList = () => {
-	const [tasks, setTask] = useState();
+	const [tasks, setTask] = useState(renderInitialSubTask());
 	function addSubTask(parentId, type) {
 		const newChild =
 			type === "group" ? renderInitialTask() : renderInitialSubTask();
 		if (parentId) {
 			const newSubTask = add(parentId, tasks?.subTask, newChild);
-			console.log(newSubTask);
+			setTask({ ...tasks, subTask: [...newSubTask] });
 		} else {
-			const newSubTask = tasks?.subTask ? [...tasks?.subTask, newChild] : [{...newChild}];
-			console.log(newSubTask);
+			const newSubTask = tasks?.subTask
+				? [...tasks?.subTask, newChild]
+				: [{ ...newChild }];
+			setTask({ ...tasks, subTask: [...newSubTask] });
 		}
 	}
 
@@ -47,27 +50,40 @@ const ToDoList = () => {
 		}
 	}
 
+	function editSubTask(id, subTask) {
+		const newTask = {
+			...tasks,
+			subTask: update(id, tasks.subTask, null, subTask),
+		};
+		setTask({ ...newTask });
+	}
+
 	const renderConditionActions = (id) => (
-		<div className="actionWrapper">{/*TODO add styles*/}
+		<div className="actionWrapper">
+			{/*TODO add styles*/}
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "group")}>
 				<span className="icon-outlineGroupIcon" />
+				addTask
 			</button>
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "sub")}>
 				<span className="icon-outlinePlusIcon" />
+				addSubTask
 			</button>
 			<button className="actionBtnRed" onClick={() => removeSubTask(id)}>
-				<span className="icon-outlineMinusIcon" />{/*TODO add font-awesome icon*/}
+				<span className="icon-outlineMinusIcon" />
+				remove
+				{/*TODO add font-awesome icon*/}
 			</button>
 		</div>
 	);
+
 	const Sub = (item, index) => (
 		<li>
 			<div className="subConditionContainer">
-				<div>
-					<span>
-						<input value={item.title} onChange={() => console.log("hi")} />
-					</span>
-				</div>
+				<SubTask
+					subTask={item}
+					onChange={(updatedTask) => editSubTask(item.id, updatedTask)}
+				/>
 				<div className="removeBtnContainer">
 					<button className="removeBtn" onClick={() => removeSubTask(item.id)}>
 						<span className="icon-outlineMinusIcon" />

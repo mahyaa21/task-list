@@ -7,11 +7,10 @@ import ToDoList from "./components/task/task";
 // TODO - feel free to modify "App" content and develope the solution
 const App = observer(() => {
   const { TasksStore } = useStores();
-console.log(TasksStore);
   return (
     <div className="App">
       {TasksStore.label}
-      <ToDoList/>
+      <ToDoList />
     </div>
   );
 });

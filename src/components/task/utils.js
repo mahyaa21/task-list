@@ -7,7 +7,7 @@ export function update(id, arrayData, property, value) {
           arrayData[i] = value;
         }
       } else if (arrayData[i].subTask?.length > 0) {
-        updateTask(id, arrayData[i].subTask, property, value);
+        update(id, arrayData[i].subTask, property, value);
       }
     }
     return arrayData;
@@ -20,7 +20,7 @@ export function update(id, arrayData, property, value) {
         if (child?.subTask?.length) {
           return {
             ...child,
-            subTask: removeTask(
+            subTask: remove(
               child?.subTask,
               childIdToRemove,
             ),
@@ -40,7 +40,7 @@ export function update(id, arrayData, property, value) {
           subTask: [...arrayData[i].subTask, newChild],
         };
       } else if (arrayData[i].subTask?.length > 0) {
-        addSubTask(id, arrayData[i].subTask, newChild);
+        add(id, arrayData[i].subTask, newChild);
       }
     }
     return arrayData;
