@@ -7,7 +7,7 @@ import {
 	faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 import SubTask from "./subTask";
-import { add, remove, update } from "./utils";
+import useTask from "./useTask";
 import "./task.scss";
 
 const renderInitialTask = () => {
@@ -33,11 +33,12 @@ const renderInitialSubTask = () => {
 
 const ToDoList = ({ getList, TaskList }) => {
 	const [tasks, setTasks] = useState(TaskList);
-	
-	useEffect(()=> {
+	const { add, remove, update } = useTask();
+
+	useEffect(() => {
 		getList(tasks);
-	},[tasks]);
-	
+	}, [tasks]);
+
 	function addSubTask(parentId, type) {
 		const newChild =
 			type === "group" ? renderInitialTask() : renderInitialSubTask();
