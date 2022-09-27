@@ -72,7 +72,6 @@ const ToDoList = ({ getList, TaskList }) => {
 
 	const renderTaskActions = (id) => (
 		<div className="actionWrapper">
-			{/*TODO add styles*/}
 			<button className="actionBtnBlue" onClick={() => addSubTask(id, "group")}>
 				<FontAwesomeIcon icon={faSquarePlus} className="fa-regular" />
 			</button>
