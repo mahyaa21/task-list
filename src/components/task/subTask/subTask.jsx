@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./task.scss";
+import "../task.scss";
 
 const SubTask = ({ subTask, onChange }) => {
 	const [subTaskTitle, setSubTaskTitle] = useState(subTask.title);

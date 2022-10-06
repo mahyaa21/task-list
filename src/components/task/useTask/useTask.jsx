@@ -17,9 +17,7 @@ function useTask() {
 	}
 
 	function remove(parent, childIdToRemove) {
-		parent = parent
-			.filter((child) => child.id !== childIdToRemove)
-			.map((child) => {
+		parent = parent?.filter((child) => child.id !== childIdToRemove)?.map((child) => {
 				if (child?.subTask?.length) {
 					return {
 						...child,
@@ -32,7 +30,7 @@ function useTask() {
 		return parent;
 	}
 
-	function add(id, arrayData, newChild) {
+	function add(id, arrayData={}, newChild) {
 		for (let i = 0; i < arrayData.length; i++) {
 			if (arrayData[i].id === id) {
 				arrayData[i] = {

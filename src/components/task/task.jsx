@@ -6,8 +6,8 @@ import {
 	faTrashCan,
 	faMinus,
 } from "@fortawesome/free-solid-svg-icons";
-import SubTask from "./subTask";
-import useTask from "./useTask";
+import SubTask from "./subTask/subTask";
+import useTask from "./useTask/useTask";
 import "./task.scss";
 
 const renderInitialTask = () => {
